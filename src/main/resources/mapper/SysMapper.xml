@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.dao.SysMapper">
+  <resultMap id="BaseResultMap" type="com.server.bean.Sys">
+    <constructor>
+      <arg column="csys_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="csys_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="csys_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="csys_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="csys_iw_type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="csys_iw_value" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="csys_feature" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.server.bean.Sys">
+    insert into tb_sys (csys_id, csys_name, csys_type, 
+      csys_content, csys_iw_type, csys_iw_value, 
+      csys_feature)
+    values (#{csysId,jdbcType=INTEGER}, #{csysName,jdbcType=VARCHAR}, #{csysType,jdbcType=VARCHAR}, 
+      #{csysContent,jdbcType=VARCHAR}, #{csysIwType,jdbcType=VARCHAR}, #{csysIwValue,jdbcType=VARCHAR}, 
+      #{csysFeature,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.bean.Sys">
+    insert into tb_sys
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="csysId != null">
+        csys_id,
+      </if>
+      <if test="csysName != null">
+        csys_name,
+      </if>
+      <if test="csysType != null">
+        csys_type,
+      </if>
+      <if test="csysContent != null">
+        csys_content,
+      </if>
+      <if test="csysIwType != null">
+        csys_iw_type,
+      </if>
+      <if test="csysIwValue != null">
+        csys_iw_value,
+      </if>
+      <if test="csysFeature != null">
+        csys_feature,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="csysId != null">
+        #{csysId,jdbcType=INTEGER},
+      </if>
+      <if test="csysName != null">
+        #{csysName,jdbcType=VARCHAR},
+      </if>
+      <if test="csysType != null">
+        #{csysType,jdbcType=VARCHAR},
+      </if>
+      <if test="csysContent != null">
+        #{csysContent,jdbcType=VARCHAR},
+      </if>
+      <if test="csysIwType != null">
+        #{csysIwType,jdbcType=VARCHAR},
+      </if>
+      <if test="csysIwValue != null">
+        #{csysIwValue,jdbcType=VARCHAR},
+      </if>
+      <if test="csysFeature != null">
+        #{csysFeature,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

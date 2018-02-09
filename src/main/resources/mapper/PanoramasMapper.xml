@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.dao.PanoramasMapper">
+  <resultMap id="BaseResultMap" type="com.server.bean.Panoramas">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="batch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="importtime" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="pictureurl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="imgid" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="camsn" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="longitude" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="latitude" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="height" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="roll" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="pitch" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="heading" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="speed" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="speed_n" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="speed_e" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="speed_d" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="datetime" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="unix_time_sec" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="unix_time_microsec" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="systemstatus" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="filterstatus" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="havefix" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="extvelocity" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="distancetoprevious" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="releasemode" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="point" javaType="java.lang.Object" jdbcType="OTHER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, batch_id, importtime, pictureurl, imgid, camsn, longitude, latitude, height, 
+    roll, pitch, heading, speed, speed_n, speed_e, speed_d, datetime, unix_time_sec, 
+    unix_time_microsec, systemstatus, filterstatus, havefix, extvelocity, distancetoprevious, 
+    releasemode, point
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_panoramas
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_panoramas
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.bean.Panoramas">
+    insert into tb_panoramas (id, batch_id, importtime, 
+      pictureurl, imgid, camsn, 
+      longitude, latitude, height, 
+      roll, pitch, heading, 
+      speed, speed_n, speed_e, 
+      speed_d, datetime, unix_time_sec, 
+      unix_time_microsec, systemstatus, filterstatus, 
+      havefix, extvelocity, distancetoprevious, 
+      releasemode, point)
+    values (#{id,jdbcType=INTEGER}, #{batchId,jdbcType=INTEGER}, #{importtime,jdbcType=DATE}, 
+      #{pictureurl,jdbcType=VARCHAR}, #{imgid,jdbcType=VARCHAR}, #{camsn,jdbcType=VARCHAR}, 
+      #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, #{height,jdbcType=DOUBLE}, 
+      #{roll,jdbcType=DOUBLE}, #{pitch,jdbcType=DOUBLE}, #{heading,jdbcType=DOUBLE}, 
+      #{speed,jdbcType=DOUBLE}, #{speedN,jdbcType=DOUBLE}, #{speedE,jdbcType=DOUBLE}, 
+      #{speedD,jdbcType=DOUBLE}, #{datetime,jdbcType=VARCHAR}, #{unixTimeSec,jdbcType=VARCHAR}, 
+      #{unixTimeMicrosec,jdbcType=VARCHAR}, #{systemstatus,jdbcType=VARCHAR}, #{filterstatus,jdbcType=VARCHAR}, 
+      #{havefix,jdbcType=VARCHAR}, #{extvelocity,jdbcType=VARCHAR}, #{distancetoprevious,jdbcType=VARCHAR}, 
+      #{releasemode,jdbcType=VARCHAR}, #{point,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.bean.Panoramas">
+    insert into tb_panoramas
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+      <if test="importtime != null">
+        importtime,
+      </if>
+      <if test="pictureurl != null">
+        pictureurl,
+      </if>
+      <if test="imgid != null">
+        imgid,
+      </if>
+      <if test="camsn != null">
+        camsn,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="roll != null">
+        roll,
+      </if>
+      <if test="pitch != null">
+        pitch,
+      </if>
+      <if test="heading != null">
+        heading,
+      </if>
+      <if test="speed != null">
+        speed,
+      </if>
+      <if test="speedN != null">
+        speed_n,
+      </if>
+      <if test="speedE != null">
+        speed_e,
+      </if>
+      <if test="speedD != null">
+        speed_d,
+      </if>
+      <if test="datetime != null">
+        datetime,
+      </if>
+      <if test="unixTimeSec != null">
+        unix_time_sec,
+      </if>
+      <if test="unixTimeMicrosec != null">
+        unix_time_microsec,
+      </if>
+      <if test="systemstatus != null">
+        systemstatus,
+      </if>
+      <if test="filterstatus != null">
+        filterstatus,
+      </if>
+      <if test="havefix != null">
+        havefix,
+      </if>
+      <if test="extvelocity != null">
+        extvelocity,
+      </if>
+      <if test="distancetoprevious != null">
+        distancetoprevious,
+      </if>
+      <if test="releasemode != null">
+        releasemode,
+      </if>
+      <if test="point != null">
+        point,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="importtime != null">
+        #{importtime,jdbcType=DATE},
+      </if>
+      <if test="pictureurl != null">
+        #{pictureurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgid != null">
+        #{imgid,jdbcType=VARCHAR},
+      </if>
+      <if test="camsn != null">
+        #{camsn,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="roll != null">
+        #{roll,jdbcType=DOUBLE},
+      </if>
+      <if test="pitch != null">
+        #{pitch,jdbcType=DOUBLE},
+      </if>
+      <if test="heading != null">
+        #{heading,jdbcType=DOUBLE},
+      </if>
+      <if test="speed != null">
+        #{speed,jdbcType=DOUBLE},
+      </if>
+      <if test="speedN != null">
+        #{speedN,jdbcType=DOUBLE},
+      </if>
+      <if test="speedE != null">
+        #{speedE,jdbcType=DOUBLE},
+      </if>
+      <if test="speedD != null">
+        #{speedD,jdbcType=DOUBLE},
+      </if>
+      <if test="datetime != null">
+        #{datetime,jdbcType=VARCHAR},
+      </if>
+      <if test="unixTimeSec != null">
+        #{unixTimeSec,jdbcType=VARCHAR},
+      </if>
+      <if test="unixTimeMicrosec != null">
+        #{unixTimeMicrosec,jdbcType=VARCHAR},
+      </if>
+      <if test="systemstatus != null">
+        #{systemstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="filterstatus != null">
+        #{filterstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="havefix != null">
+        #{havefix,jdbcType=VARCHAR},
+      </if>
+      <if test="extvelocity != null">
+        #{extvelocity,jdbcType=VARCHAR},
+      </if>
+      <if test="distancetoprevious != null">
+        #{distancetoprevious,jdbcType=VARCHAR},
+      </if>
+      <if test="releasemode != null">
+        #{releasemode,jdbcType=VARCHAR},
+      </if>
+      <if test="point != null">
+        #{point,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.bean.Panoramas">
+    update tb_panoramas
+    <set>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="importtime != null">
+        importtime = #{importtime,jdbcType=DATE},
+      </if>
+      <if test="pictureurl != null">
+        pictureurl = #{pictureurl,jdbcType=VARCHAR},
+      </if>
+      <if test="imgid != null">
+        imgid = #{imgid,jdbcType=VARCHAR},
+      </if>
+      <if test="camsn != null">
+        camsn = #{camsn,jdbcType=VARCHAR},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="roll != null">
+        roll = #{roll,jdbcType=DOUBLE},
+      </if>
+      <if test="pitch != null">
+        pitch = #{pitch,jdbcType=DOUBLE},
+      </if>
+      <if test="heading != null">
+        heading = #{heading,jdbcType=DOUBLE},
+      </if>
+      <if test="speed != null">
+        speed = #{speed,jdbcType=DOUBLE},
+      </if>
+      <if test="speedN != null">
+        speed_n = #{speedN,jdbcType=DOUBLE},
+      </if>
+      <if test="speedE != null">
+        speed_e = #{speedE,jdbcType=DOUBLE},
+      </if>
+      <if test="speedD != null">
+        speed_d = #{speedD,jdbcType=DOUBLE},
+      </if>
+      <if test="datetime != null">
+        datetime = #{datetime,jdbcType=VARCHAR},
+      </if>
+      <if test="unixTimeSec != null">
+        unix_time_sec = #{unixTimeSec,jdbcType=VARCHAR},
+      </if>
+      <if test="unixTimeMicrosec != null">
+        unix_time_microsec = #{unixTimeMicrosec,jdbcType=VARCHAR},
+      </if>
+      <if test="systemstatus != null">
+        systemstatus = #{systemstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="filterstatus != null">
+        filterstatus = #{filterstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="havefix != null">
+        havefix = #{havefix,jdbcType=VARCHAR},
+      </if>
+      <if test="extvelocity != null">
+        extvelocity = #{extvelocity,jdbcType=VARCHAR},
+      </if>
+      <if test="distancetoprevious != null">
+        distancetoprevious = #{distancetoprevious,jdbcType=VARCHAR},
+      </if>
+      <if test="releasemode != null">
+        releasemode = #{releasemode,jdbcType=VARCHAR},
+      </if>
+      <if test="point != null">
+        point = #{point,jdbcType=OTHER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.bean.Panoramas">
+    update tb_panoramas
+    set batch_id = #{batchId,jdbcType=INTEGER},
+      importtime = #{importtime,jdbcType=DATE},
+      pictureurl = #{pictureurl,jdbcType=VARCHAR},
+      imgid = #{imgid,jdbcType=VARCHAR},
+      camsn = #{camsn,jdbcType=VARCHAR},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      height = #{height,jdbcType=DOUBLE},
+      roll = #{roll,jdbcType=DOUBLE},
+      pitch = #{pitch,jdbcType=DOUBLE},
+      heading = #{heading,jdbcType=DOUBLE},
+      speed = #{speed,jdbcType=DOUBLE},
+      speed_n = #{speedN,jdbcType=DOUBLE},
+      speed_e = #{speedE,jdbcType=DOUBLE},
+      speed_d = #{speedD,jdbcType=DOUBLE},
+      datetime = #{datetime,jdbcType=VARCHAR},
+      unix_time_sec = #{unixTimeSec,jdbcType=VARCHAR},
+      unix_time_microsec = #{unixTimeMicrosec,jdbcType=VARCHAR},
+      systemstatus = #{systemstatus,jdbcType=VARCHAR},
+      filterstatus = #{filterstatus,jdbcType=VARCHAR},
+      havefix = #{havefix,jdbcType=VARCHAR},
+      extvelocity = #{extvelocity,jdbcType=VARCHAR},
+      distancetoprevious = #{distancetoprevious,jdbcType=VARCHAR},
+      releasemode = #{releasemode,jdbcType=VARCHAR},
+      point = #{point,jdbcType=OTHER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

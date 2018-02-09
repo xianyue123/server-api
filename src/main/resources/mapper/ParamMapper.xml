@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.dao.ParamMapper">
+  <resultMap id="BaseResultMap" type="com.server.bean.Param">
+    <constructor>
+      <idArg column="param_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="focalx" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="focaly" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="principalx" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="principaly" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="width" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="height" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="skew" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="k1" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="k2" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="k3" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="k4" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="p1" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="p2" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="equip_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ext" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    param_id, focalx, focaly, principalx, principaly, width, height, skew, k1, k2, k3, 
+    k4, p1, p2, equip_id, ext
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_param
+    where param_id = #{paramId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_param
+    where param_id = #{paramId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.bean.Param">
+    insert into tb_param (param_id, focalx, focaly, 
+      principalx, principaly, width, 
+      height, skew, k1, k2, 
+      k3, k4, p1, p2, 
+      equip_id, ext)
+    values (#{paramId,jdbcType=INTEGER}, #{focalx,jdbcType=DOUBLE}, #{focaly,jdbcType=DOUBLE}, 
+      #{principalx,jdbcType=DOUBLE}, #{principaly,jdbcType=DOUBLE}, #{width,jdbcType=DOUBLE}, 
+      #{height,jdbcType=DOUBLE}, #{skew,jdbcType=DOUBLE}, #{k1,jdbcType=DOUBLE}, #{k2,jdbcType=DOUBLE}, 
+      #{k3,jdbcType=DOUBLE}, #{k4,jdbcType=DOUBLE}, #{p1,jdbcType=DOUBLE}, #{p2,jdbcType=DOUBLE}, 
+      #{equipId,jdbcType=VARCHAR}, #{ext,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.bean.Param">
+    insert into tb_param
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="paramId != null">
+        param_id,
+      </if>
+      <if test="focalx != null">
+        focalx,
+      </if>
+      <if test="focaly != null">
+        focaly,
+      </if>
+      <if test="principalx != null">
+        principalx,
+      </if>
+      <if test="principaly != null">
+        principaly,
+      </if>
+      <if test="width != null">
+        width,
+      </if>
+      <if test="height != null">
+        height,
+      </if>
+      <if test="skew != null">
+        skew,
+      </if>
+      <if test="k1 != null">
+        k1,
+      </if>
+      <if test="k2 != null">
+        k2,
+      </if>
+      <if test="k3 != null">
+        k3,
+      </if>
+      <if test="k4 != null">
+        k4,
+      </if>
+      <if test="p1 != null">
+        p1,
+      </if>
+      <if test="p2 != null">
+        p2,
+      </if>
+      <if test="equipId != null">
+        equip_id,
+      </if>
+      <if test="ext != null">
+        ext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="paramId != null">
+        #{paramId,jdbcType=INTEGER},
+      </if>
+      <if test="focalx != null">
+        #{focalx,jdbcType=DOUBLE},
+      </if>
+      <if test="focaly != null">
+        #{focaly,jdbcType=DOUBLE},
+      </if>
+      <if test="principalx != null">
+        #{principalx,jdbcType=DOUBLE},
+      </if>
+      <if test="principaly != null">
+        #{principaly,jdbcType=DOUBLE},
+      </if>
+      <if test="width != null">
+        #{width,jdbcType=DOUBLE},
+      </if>
+      <if test="height != null">
+        #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="skew != null">
+        #{skew,jdbcType=DOUBLE},
+      </if>
+      <if test="k1 != null">
+        #{k1,jdbcType=DOUBLE},
+      </if>
+      <if test="k2 != null">
+        #{k2,jdbcType=DOUBLE},
+      </if>
+      <if test="k3 != null">
+        #{k3,jdbcType=DOUBLE},
+      </if>
+      <if test="k4 != null">
+        #{k4,jdbcType=DOUBLE},
+      </if>
+      <if test="p1 != null">
+        #{p1,jdbcType=DOUBLE},
+      </if>
+      <if test="p2 != null">
+        #{p2,jdbcType=DOUBLE},
+      </if>
+      <if test="equipId != null">
+        #{equipId,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.bean.Param">
+    update tb_param
+    <set>
+      <if test="focalx != null">
+        focalx = #{focalx,jdbcType=DOUBLE},
+      </if>
+      <if test="focaly != null">
+        focaly = #{focaly,jdbcType=DOUBLE},
+      </if>
+      <if test="principalx != null">
+        principalx = #{principalx,jdbcType=DOUBLE},
+      </if>
+      <if test="principaly != null">
+        principaly = #{principaly,jdbcType=DOUBLE},
+      </if>
+      <if test="width != null">
+        width = #{width,jdbcType=DOUBLE},
+      </if>
+      <if test="height != null">
+        height = #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="skew != null">
+        skew = #{skew,jdbcType=DOUBLE},
+      </if>
+      <if test="k1 != null">
+        k1 = #{k1,jdbcType=DOUBLE},
+      </if>
+      <if test="k2 != null">
+        k2 = #{k2,jdbcType=DOUBLE},
+      </if>
+      <if test="k3 != null">
+        k3 = #{k3,jdbcType=DOUBLE},
+      </if>
+      <if test="k4 != null">
+        k4 = #{k4,jdbcType=DOUBLE},
+      </if>
+      <if test="p1 != null">
+        p1 = #{p1,jdbcType=DOUBLE},
+      </if>
+      <if test="p2 != null">
+        p2 = #{p2,jdbcType=DOUBLE},
+      </if>
+      <if test="equipId != null">
+        equip_id = #{equipId,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null">
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where param_id = #{paramId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.bean.Param">
+    update tb_param
+    set focalx = #{focalx,jdbcType=DOUBLE},
+      focaly = #{focaly,jdbcType=DOUBLE},
+      principalx = #{principalx,jdbcType=DOUBLE},
+      principaly = #{principaly,jdbcType=DOUBLE},
+      width = #{width,jdbcType=DOUBLE},
+      height = #{height,jdbcType=DOUBLE},
+      skew = #{skew,jdbcType=DOUBLE},
+      k1 = #{k1,jdbcType=DOUBLE},
+      k2 = #{k2,jdbcType=DOUBLE},
+      k3 = #{k3,jdbcType=DOUBLE},
+      k4 = #{k4,jdbcType=DOUBLE},
+      p1 = #{p1,jdbcType=DOUBLE},
+      p2 = #{p2,jdbcType=DOUBLE},
+      equip_id = #{equipId,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR}
+    where param_id = #{paramId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.dao.ProjectMapper">
+  <resultMap id="BaseResultMap" type="com.server.bean.Project">
+    <constructor>
+      <idArg column="proj_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="projname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="people" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="editdate" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="timeversion" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="dataregion" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="gatherers" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="topology" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="datatype" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="createdate" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="projstate" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="projtype" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    proj_id, projname, people, remark, editdate, timeversion, dataregion, gatherers, 
+    topology, datatype, user_id, createdate, projstate, projtype
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_project
+    where proj_id = #{projId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_project
+    where proj_id = #{projId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.bean.Project">
+    insert into tb_project (proj_id, projname, people, 
+      remark, editdate, timeversion, 
+      dataregion, gatherers, topology, 
+      datatype, user_id, createdate, 
+      projstate, projtype)
+    values (#{projId,jdbcType=INTEGER}, #{projname,jdbcType=VARCHAR}, #{people,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{editdate,jdbcType=DATE}, #{timeversion,jdbcType=VARCHAR}, 
+      #{dataregion,jdbcType=VARCHAR}, #{gatherers,jdbcType=VARCHAR}, #{topology,jdbcType=VARCHAR}, 
+      #{datatype,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{createdate,jdbcType=DATE}, 
+      #{projstate,jdbcType=INTEGER}, #{projtype,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.bean.Project">
+    insert into tb_project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projId != null">
+        proj_id,
+      </if>
+      <if test="projname != null">
+        projname,
+      </if>
+      <if test="people != null">
+        people,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="editdate != null">
+        editdate,
+      </if>
+      <if test="timeversion != null">
+        timeversion,
+      </if>
+      <if test="dataregion != null">
+        dataregion,
+      </if>
+      <if test="gatherers != null">
+        gatherers,
+      </if>
+      <if test="topology != null">
+        topology,
+      </if>
+      <if test="datatype != null">
+        datatype,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="createdate != null">
+        createdate,
+      </if>
+      <if test="projstate != null">
+        projstate,
+      </if>
+      <if test="projtype != null">
+        projtype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projId != null">
+        #{projId,jdbcType=INTEGER},
+      </if>
+      <if test="projname != null">
+        #{projname,jdbcType=VARCHAR},
+      </if>
+      <if test="people != null">
+        #{people,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="editdate != null">
+        #{editdate,jdbcType=DATE},
+      </if>
+      <if test="timeversion != null">
+        #{timeversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataregion != null">
+        #{dataregion,jdbcType=VARCHAR},
+      </if>
+      <if test="gatherers != null">
+        #{gatherers,jdbcType=VARCHAR},
+      </if>
+      <if test="topology != null">
+        #{topology,jdbcType=VARCHAR},
+      </if>
+      <if test="datatype != null">
+        #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=DATE},
+      </if>
+      <if test="projstate != null">
+        #{projstate,jdbcType=INTEGER},
+      </if>
+      <if test="projtype != null">
+        #{projtype,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.bean.Project">
+    update tb_project
+    <set>
+      <if test="projname != null">
+        projname = #{projname,jdbcType=VARCHAR},
+      </if>
+      <if test="people != null">
+        people = #{people,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="editdate != null">
+        editdate = #{editdate,jdbcType=DATE},
+      </if>
+      <if test="timeversion != null">
+        timeversion = #{timeversion,jdbcType=VARCHAR},
+      </if>
+      <if test="dataregion != null">
+        dataregion = #{dataregion,jdbcType=VARCHAR},
+      </if>
+      <if test="gatherers != null">
+        gatherers = #{gatherers,jdbcType=VARCHAR},
+      </if>
+      <if test="topology != null">
+        topology = #{topology,jdbcType=VARCHAR},
+      </if>
+      <if test="datatype != null">
+        datatype = #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null">
+        createdate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="projstate != null">
+        projstate = #{projstate,jdbcType=INTEGER},
+      </if>
+      <if test="projtype != null">
+        projtype = #{projtype,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where proj_id = #{projId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.bean.Project">
+    update tb_project
+    set projname = #{projname,jdbcType=VARCHAR},
+      people = #{people,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      editdate = #{editdate,jdbcType=DATE},
+      timeversion = #{timeversion,jdbcType=VARCHAR},
+      dataregion = #{dataregion,jdbcType=VARCHAR},
+      gatherers = #{gatherers,jdbcType=VARCHAR},
+      topology = #{topology,jdbcType=VARCHAR},
+      datatype = #{datatype,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      createdate = #{createdate,jdbcType=DATE},
+      projstate = #{projstate,jdbcType=INTEGER},
+      projtype = #{projtype,jdbcType=VARCHAR}
+    where proj_id = #{projId,jdbcType=INTEGER}
+  </update>
+</mapper>

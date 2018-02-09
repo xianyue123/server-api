@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.dao.UserProjectMapper">
+  <resultMap id="BaseResultMap" type="com.server.bean.UserProject">
+    <constructor>
+      <idArg column="up_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="proj_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="operatedate" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="operatelog" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    up_id, user_id, proj_id, operatedate, operatelog
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user_project
+    where up_id = #{upId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_user_project
+    where up_id = #{upId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.bean.UserProject">
+    insert into tb_user_project (up_id, user_id, proj_id, 
+      operatedate, operatelog)
+    values (#{upId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{projId,jdbcType=INTEGER}, 
+      #{operatedate,jdbcType=DATE}, #{operatelog,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.bean.UserProject">
+    insert into tb_user_project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="upId != null">
+        up_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="projId != null">
+        proj_id,
+      </if>
+      <if test="operatedate != null">
+        operatedate,
+      </if>
+      <if test="operatelog != null">
+        operatelog,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="upId != null">
+        #{upId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="projId != null">
+        #{projId,jdbcType=INTEGER},
+      </if>
+      <if test="operatedate != null">
+        #{operatedate,jdbcType=DATE},
+      </if>
+      <if test="operatelog != null">
+        #{operatelog,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.bean.UserProject">
+    update tb_user_project
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="projId != null">
+        proj_id = #{projId,jdbcType=INTEGER},
+      </if>
+      <if test="operatedate != null">
+        operatedate = #{operatedate,jdbcType=DATE},
+      </if>
+      <if test="operatelog != null">
+        operatelog = #{operatelog,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where up_id = #{upId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.bean.UserProject">
+    update tb_user_project
+    set user_id = #{userId,jdbcType=INTEGER},
+      proj_id = #{projId,jdbcType=INTEGER},
+      operatedate = #{operatedate,jdbcType=DATE},
+      operatelog = #{operatelog,jdbcType=VARCHAR}
+    where up_id = #{upId,jdbcType=INTEGER}
+  </update>
+</mapper>

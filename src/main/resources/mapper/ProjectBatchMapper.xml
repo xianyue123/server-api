@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.dao.ProjectBatchMapper">
+  <resultMap id="BaseResultMap" type="com.server.bean.ProjectBatch">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="proj_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="batch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="reldate" javaType="java.util.Date" jdbcType="DATE" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, proj_id, batch_id, reldate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_project_batch
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_project_batch
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.bean.ProjectBatch">
+    insert into tb_project_batch (id, proj_id, batch_id, 
+      reldate)
+    values (#{id,jdbcType=INTEGER}, #{projId,jdbcType=INTEGER}, #{batchId,jdbcType=INTEGER}, 
+      #{reldate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.bean.ProjectBatch">
+    insert into tb_project_batch
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="projId != null">
+        proj_id,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+      <if test="reldate != null">
+        reldate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projId != null">
+        #{projId,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="reldate != null">
+        #{reldate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.bean.ProjectBatch">
+    update tb_project_batch
+    <set>
+      <if test="projId != null">
+        proj_id = #{projId,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="reldate != null">
+        reldate = #{reldate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.bean.ProjectBatch">
+    update tb_project_batch
+    set proj_id = #{projId,jdbcType=INTEGER},
+      batch_id = #{batchId,jdbcType=INTEGER},
+      reldate = #{reldate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

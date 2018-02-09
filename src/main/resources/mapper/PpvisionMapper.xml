@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.dao.PpvisionMapper">
+  <resultMap id="BaseResultMap" type="com.server.bean.Ppvision">
+    <constructor>
+      <idArg column="img_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="imgname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="train" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="batch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="lon" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="lat" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="alt" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="yaw" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="pitch" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="roll" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="heading" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="ground" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="level" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="imgtype" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="imgurl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="point" javaType="java.lang.Object" jdbcType="OTHER" />
+      <arg column="x" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="y" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="z" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="depth" javaType="java.lang.Double" jdbcType="DOUBLE" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    img_id, imgname, train, batch_id, lon, lat, alt, yaw, pitch, roll, heading, ground, 
+    level, type, imgtype, imgurl, point, x, y, z, depth
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_ppvision
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_ppvision
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.bean.Ppvision">
+    insert into tb_ppvision (img_id, imgname, train, 
+      batch_id, lon, lat, alt, 
+      yaw, pitch, roll, heading, 
+      ground, level, type, 
+      imgtype, imgurl, point, 
+      x, y, z, depth
+      )
+    values (#{imgId,jdbcType=INTEGER}, #{imgname,jdbcType=VARCHAR}, #{train,jdbcType=VARCHAR}, 
+      #{batchId,jdbcType=INTEGER}, #{lon,jdbcType=DOUBLE}, #{lat,jdbcType=DOUBLE}, #{alt,jdbcType=DOUBLE}, 
+      #{yaw,jdbcType=DOUBLE}, #{pitch,jdbcType=DOUBLE}, #{roll,jdbcType=DOUBLE}, #{heading,jdbcType=DOUBLE}, 
+      #{ground,jdbcType=DOUBLE}, #{level,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{imgtype,jdbcType=INTEGER}, #{imgurl,jdbcType=VARCHAR}, #{point,jdbcType=OTHER}, 
+      #{x,jdbcType=DOUBLE}, #{y,jdbcType=DOUBLE}, #{z,jdbcType=DOUBLE}, #{depth,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.bean.Ppvision">
+    insert into tb_ppvision
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        img_id,
+      </if>
+      <if test="imgname != null">
+        imgname,
+      </if>
+      <if test="train != null">
+        train,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+      <if test="lon != null">
+        lon,
+      </if>
+      <if test="lat != null">
+        lat,
+      </if>
+      <if test="alt != null">
+        alt,
+      </if>
+      <if test="yaw != null">
+        yaw,
+      </if>
+      <if test="pitch != null">
+        pitch,
+      </if>
+      <if test="roll != null">
+        roll,
+      </if>
+      <if test="heading != null">
+        heading,
+      </if>
+      <if test="ground != null">
+        ground,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="imgtype != null">
+        imgtype,
+      </if>
+      <if test="imgurl != null">
+        imgurl,
+      </if>
+      <if test="point != null">
+        point,
+      </if>
+      <if test="x != null">
+        x,
+      </if>
+      <if test="y != null">
+        y,
+      </if>
+      <if test="z != null">
+        z,
+      </if>
+      <if test="depth != null">
+        depth,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="imgId != null">
+        #{imgId,jdbcType=INTEGER},
+      </if>
+      <if test="imgname != null">
+        #{imgname,jdbcType=VARCHAR},
+      </if>
+      <if test="train != null">
+        #{train,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="lon != null">
+        #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null">
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="alt != null">
+        #{alt,jdbcType=DOUBLE},
+      </if>
+      <if test="yaw != null">
+        #{yaw,jdbcType=DOUBLE},
+      </if>
+      <if test="pitch != null">
+        #{pitch,jdbcType=DOUBLE},
+      </if>
+      <if test="roll != null">
+        #{roll,jdbcType=DOUBLE},
+      </if>
+      <if test="heading != null">
+        #{heading,jdbcType=DOUBLE},
+      </if>
+      <if test="ground != null">
+        #{ground,jdbcType=DOUBLE},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="imgtype != null">
+        #{imgtype,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null">
+        #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="point != null">
+        #{point,jdbcType=OTHER},
+      </if>
+      <if test="x != null">
+        #{x,jdbcType=DOUBLE},
+      </if>
+      <if test="y != null">
+        #{y,jdbcType=DOUBLE},
+      </if>
+      <if test="z != null">
+        #{z,jdbcType=DOUBLE},
+      </if>
+      <if test="depth != null">
+        #{depth,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.bean.Ppvision">
+    update tb_ppvision
+    <set>
+      <if test="imgname != null">
+        imgname = #{imgname,jdbcType=VARCHAR},
+      </if>
+      <if test="train != null">
+        train = #{train,jdbcType=VARCHAR},
+      </if>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="lon != null">
+        lon = #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="alt != null">
+        alt = #{alt,jdbcType=DOUBLE},
+      </if>
+      <if test="yaw != null">
+        yaw = #{yaw,jdbcType=DOUBLE},
+      </if>
+      <if test="pitch != null">
+        pitch = #{pitch,jdbcType=DOUBLE},
+      </if>
+      <if test="roll != null">
+        roll = #{roll,jdbcType=DOUBLE},
+      </if>
+      <if test="heading != null">
+        heading = #{heading,jdbcType=DOUBLE},
+      </if>
+      <if test="ground != null">
+        ground = #{ground,jdbcType=DOUBLE},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="imgtype != null">
+        imgtype = #{imgtype,jdbcType=INTEGER},
+      </if>
+      <if test="imgurl != null">
+        imgurl = #{imgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="point != null">
+        point = #{point,jdbcType=OTHER},
+      </if>
+      <if test="x != null">
+        x = #{x,jdbcType=DOUBLE},
+      </if>
+      <if test="y != null">
+        y = #{y,jdbcType=DOUBLE},
+      </if>
+      <if test="z != null">
+        z = #{z,jdbcType=DOUBLE},
+      </if>
+      <if test="depth != null">
+        depth = #{depth,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.bean.Ppvision">
+    update tb_ppvision
+    set imgname = #{imgname,jdbcType=VARCHAR},
+      train = #{train,jdbcType=VARCHAR},
+      batch_id = #{batchId,jdbcType=INTEGER},
+      lon = #{lon,jdbcType=DOUBLE},
+      lat = #{lat,jdbcType=DOUBLE},
+      alt = #{alt,jdbcType=DOUBLE},
+      yaw = #{yaw,jdbcType=DOUBLE},
+      pitch = #{pitch,jdbcType=DOUBLE},
+      roll = #{roll,jdbcType=DOUBLE},
+      heading = #{heading,jdbcType=DOUBLE},
+      ground = #{ground,jdbcType=DOUBLE},
+      level = #{level,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      imgtype = #{imgtype,jdbcType=INTEGER},
+      imgurl = #{imgurl,jdbcType=VARCHAR},
+      point = #{point,jdbcType=OTHER},
+      x = #{x,jdbcType=DOUBLE},
+      y = #{y,jdbcType=DOUBLE},
+      z = #{z,jdbcType=DOUBLE},
+      depth = #{depth,jdbcType=DOUBLE}
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.dao.PlacemarkMapper">
+  <resultMap id="BaseResultMap" type="com.server.bean.Placemark">
+    <constructor>
+      <idArg column="pm_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="batch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="importtime" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="longitude" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="latitude" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="altitude" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="frameindex" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pictureurl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="gradient" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="speed" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="roll" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="pitch" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="yaw" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="point" javaType="java.lang.Object" jdbcType="OTHER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    pm_id, batch_id, importtime, longitude, latitude, altitude, frameindex, pictureurl, 
+    gradient, speed, type, roll, pitch, yaw, point
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_placemark
+    where pm_id = #{pmId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_placemark
+    where pm_id = #{pmId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.bean.Placemark">
+    insert into tb_placemark (pm_id, batch_id, importtime, 
+      longitude, latitude, altitude, 
+      frameindex, pictureurl, gradient, 
+      speed, type, roll, pitch, 
+      yaw, point)
+    values (#{pmId,jdbcType=INTEGER}, #{batchId,jdbcType=INTEGER}, #{importtime,jdbcType=DATE}, 
+      #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, #{altitude,jdbcType=DOUBLE}, 
+      #{frameindex,jdbcType=VARCHAR}, #{pictureurl,jdbcType=VARCHAR}, #{gradient,jdbcType=DOUBLE}, 
+      #{speed,jdbcType=DOUBLE}, #{type,jdbcType=VARCHAR}, #{roll,jdbcType=DOUBLE}, #{pitch,jdbcType=DOUBLE}, 
+      #{yaw,jdbcType=DOUBLE}, #{point,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.bean.Placemark">
+    insert into tb_placemark
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pmId != null">
+        pm_id,
+      </if>
+      <if test="batchId != null">
+        batch_id,
+      </if>
+      <if test="importtime != null">
+        importtime,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="altitude != null">
+        altitude,
+      </if>
+      <if test="frameindex != null">
+        frameindex,
+      </if>
+      <if test="pictureurl != null">
+        pictureurl,
+      </if>
+      <if test="gradient != null">
+        gradient,
+      </if>
+      <if test="speed != null">
+        speed,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="roll != null">
+        roll,
+      </if>
+      <if test="pitch != null">
+        pitch,
+      </if>
+      <if test="yaw != null">
+        yaw,
+      </if>
+      <if test="point != null">
+        point,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pmId != null">
+        #{pmId,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null">
+        #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="importtime != null">
+        #{importtime,jdbcType=DATE},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="altitude != null">
+        #{altitude,jdbcType=DOUBLE},
+      </if>
+      <if test="frameindex != null">
+        #{frameindex,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureurl != null">
+        #{pictureurl,jdbcType=VARCHAR},
+      </if>
+      <if test="gradient != null">
+        #{gradient,jdbcType=DOUBLE},
+      </if>
+      <if test="speed != null">
+        #{speed,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="roll != null">
+        #{roll,jdbcType=DOUBLE},
+      </if>
+      <if test="pitch != null">
+        #{pitch,jdbcType=DOUBLE},
+      </if>
+      <if test="yaw != null">
+        #{yaw,jdbcType=DOUBLE},
+      </if>
+      <if test="point != null">
+        #{point,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.bean.Placemark">
+    update tb_placemark
+    <set>
+      <if test="batchId != null">
+        batch_id = #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="importtime != null">
+        importtime = #{importtime,jdbcType=DATE},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="altitude != null">
+        altitude = #{altitude,jdbcType=DOUBLE},
+      </if>
+      <if test="frameindex != null">
+        frameindex = #{frameindex,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureurl != null">
+        pictureurl = #{pictureurl,jdbcType=VARCHAR},
+      </if>
+      <if test="gradient != null">
+        gradient = #{gradient,jdbcType=DOUBLE},
+      </if>
+      <if test="speed != null">
+        speed = #{speed,jdbcType=DOUBLE},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="roll != null">
+        roll = #{roll,jdbcType=DOUBLE},
+      </if>
+      <if test="pitch != null">
+        pitch = #{pitch,jdbcType=DOUBLE},
+      </if>
+      <if test="yaw != null">
+        yaw = #{yaw,jdbcType=DOUBLE},
+      </if>
+      <if test="point != null">
+        point = #{point,jdbcType=OTHER},
+      </if>
+    </set>
+    where pm_id = #{pmId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.bean.Placemark">
+    update tb_placemark
+    set batch_id = #{batchId,jdbcType=INTEGER},
+      importtime = #{importtime,jdbcType=DATE},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      altitude = #{altitude,jdbcType=DOUBLE},
+      frameindex = #{frameindex,jdbcType=VARCHAR},
+      pictureurl = #{pictureurl,jdbcType=VARCHAR},
+      gradient = #{gradient,jdbcType=DOUBLE},
+      speed = #{speed,jdbcType=DOUBLE},
+      type = #{type,jdbcType=VARCHAR},
+      roll = #{roll,jdbcType=DOUBLE},
+      pitch = #{pitch,jdbcType=DOUBLE},
+      yaw = #{yaw,jdbcType=DOUBLE},
+      point = #{point,jdbcType=OTHER}
+    where pm_id = #{pmId,jdbcType=INTEGER}
+  </update>
+</mapper>

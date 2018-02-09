@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.dao.LayerMapper">
+  <resultMap id="BaseResultMap" type="com.server.bean.Layer">
+    <constructor>
+      <idArg column="layer_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="layernum" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="proj_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    layer_id, layernum, proj_id, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_layer
+    where layer_id = #{layerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_layer
+    where layer_id = #{layerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.bean.Layer">
+    insert into tb_layer (layer_id, layernum, proj_id, 
+      remark)
+    values (#{layerId,jdbcType=INTEGER}, #{layernum,jdbcType=VARCHAR}, #{projId,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.bean.Layer">
+    insert into tb_layer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="layerId != null">
+        layer_id,
+      </if>
+      <if test="layernum != null">
+        layernum,
+      </if>
+      <if test="projId != null">
+        proj_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="layerId != null">
+        #{layerId,jdbcType=INTEGER},
+      </if>
+      <if test="layernum != null">
+        #{layernum,jdbcType=VARCHAR},
+      </if>
+      <if test="projId != null">
+        #{projId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.bean.Layer">
+    update tb_layer
+    <set>
+      <if test="layernum != null">
+        layernum = #{layernum,jdbcType=VARCHAR},
+      </if>
+      <if test="projId != null">
+        proj_id = #{projId,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where layer_id = #{layerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.bean.Layer">
+    update tb_layer
+    set layernum = #{layernum,jdbcType=VARCHAR},
+      proj_id = #{projId,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR}
+    where layer_id = #{layerId,jdbcType=INTEGER}
+  </update>
+</mapper>

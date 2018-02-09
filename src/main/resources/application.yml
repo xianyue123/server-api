@@ -1,0 +1,38 @@
+server:
+  context-path: /api/
+  address: localhost
+  port: 8090
+  display-name: 实景影像管理系统数据承载服务
+
+#spring配置
+spring:
+  profiles:
+    active: dev #(dev、test、prod)
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ppvdb_wc
+    username: ppvdb_wc
+    password: ppvdb_wc
+    driver-class-name: org.postgresql.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      max-active: 10
+      initial-size: 1
+      min-idle: 3
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+#mybatis配置
+mybatis:
+  type-aliases-package: com.server.bean
+  mapper-locations: classpath:mapper/*.xml
+  check-config-location: true
+  configLocation: classpath:mybatis/configuration.xml
+
+#logback日志配置
+logging:
+  config: classpath:logback/logback-${spring.profiles.active}.xml
+

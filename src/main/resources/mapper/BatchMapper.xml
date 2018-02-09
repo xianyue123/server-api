@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.dao.BatchMapper">
+  <resultMap id="BaseResultMap" type="com.server.bean.Batch">
+    <constructor>
+      <idArg column="batch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="batchdate" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="imgpath" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="batchname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="datatype" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="batchstate" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="kilometer" javaType="java.lang.Double" jdbcType="DOUBLE" />
+      <arg column="picturecount" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="layer_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    batch_id, batchdate, imgpath, batchname, datatype, batchstate, kilometer, picturecount, 
+    layer_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_batch
+    where batch_id = #{batchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_batch
+    where batch_id = #{batchId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.bean.Batch">
+    insert into tb_batch (batch_id, batchdate, imgpath, 
+      batchname, datatype, batchstate, 
+      kilometer, picturecount, layer_id
+      )
+    values (#{batchId,jdbcType=INTEGER}, #{batchdate,jdbcType=DATE}, #{imgpath,jdbcType=VARCHAR}, 
+      #{batchname,jdbcType=VARCHAR}, #{datatype,jdbcType=VARCHAR}, #{batchstate,jdbcType=INTEGER}, 
+      #{kilometer,jdbcType=DOUBLE}, #{picturecount,jdbcType=INTEGER}, #{layerId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.bean.Batch">
+    insert into tb_batch
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="batchId != null">
+        batch_id,
+      </if>
+      <if test="batchdate != null">
+        batchdate,
+      </if>
+      <if test="imgpath != null">
+        imgpath,
+      </if>
+      <if test="batchname != null">
+        batchname,
+      </if>
+      <if test="datatype != null">
+        datatype,
+      </if>
+      <if test="batchstate != null">
+        batchstate,
+      </if>
+      <if test="kilometer != null">
+        kilometer,
+      </if>
+      <if test="picturecount != null">
+        picturecount,
+      </if>
+      <if test="layerId != null">
+        layer_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="batchId != null">
+        #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="batchdate != null">
+        #{batchdate,jdbcType=DATE},
+      </if>
+      <if test="imgpath != null">
+        #{imgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="batchname != null">
+        #{batchname,jdbcType=VARCHAR},
+      </if>
+      <if test="datatype != null">
+        #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="batchstate != null">
+        #{batchstate,jdbcType=INTEGER},
+      </if>
+      <if test="kilometer != null">
+        #{kilometer,jdbcType=DOUBLE},
+      </if>
+      <if test="picturecount != null">
+        #{picturecount,jdbcType=INTEGER},
+      </if>
+      <if test="layerId != null">
+        #{layerId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.bean.Batch">
+    update tb_batch
+    <set>
+      <if test="batchdate != null">
+        batchdate = #{batchdate,jdbcType=DATE},
+      </if>
+      <if test="imgpath != null">
+        imgpath = #{imgpath,jdbcType=VARCHAR},
+      </if>
+      <if test="batchname != null">
+        batchname = #{batchname,jdbcType=VARCHAR},
+      </if>
+      <if test="datatype != null">
+        datatype = #{datatype,jdbcType=VARCHAR},
+      </if>
+      <if test="batchstate != null">
+        batchstate = #{batchstate,jdbcType=INTEGER},
+      </if>
+      <if test="kilometer != null">
+        kilometer = #{kilometer,jdbcType=DOUBLE},
+      </if>
+      <if test="picturecount != null">
+        picturecount = #{picturecount,jdbcType=INTEGER},
+      </if>
+      <if test="layerId != null">
+        layer_id = #{layerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where batch_id = #{batchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.bean.Batch">
+    update tb_batch
+    set batchdate = #{batchdate,jdbcType=DATE},
+      imgpath = #{imgpath,jdbcType=VARCHAR},
+      batchname = #{batchname,jdbcType=VARCHAR},
+      datatype = #{datatype,jdbcType=VARCHAR},
+      batchstate = #{batchstate,jdbcType=INTEGER},
+      kilometer = #{kilometer,jdbcType=DOUBLE},
+      picturecount = #{picturecount,jdbcType=INTEGER},
+      layer_id = #{layerId,jdbcType=INTEGER}
+    where batch_id = #{batchId,jdbcType=INTEGER}
+  </update>
+</mapper>

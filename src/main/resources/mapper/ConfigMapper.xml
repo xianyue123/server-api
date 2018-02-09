@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.server.dao.ConfigMapper">
+  <resultMap id="BaseResultMap" type="com.server.bean.Config">
+    <constructor>
+      <idArg column="cfg_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cfg_key" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="cfg_value" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    cfg_id, cfg_key, cfg_value, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_config
+    where cfg_id = #{cfgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_config
+    where cfg_id = #{cfgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.server.bean.Config">
+    insert into tb_config (cfg_id, cfg_key, cfg_value, 
+      remark)
+    values (#{cfgId,jdbcType=INTEGER}, #{cfgKey,jdbcType=VARCHAR}, #{cfgValue,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.server.bean.Config">
+    insert into tb_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cfgId != null">
+        cfg_id,
+      </if>
+      <if test="cfgKey != null">
+        cfg_key,
+      </if>
+      <if test="cfgValue != null">
+        cfg_value,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cfgId != null">
+        #{cfgId,jdbcType=INTEGER},
+      </if>
+      <if test="cfgKey != null">
+        #{cfgKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgValue != null">
+        #{cfgValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.server.bean.Config">
+    update tb_config
+    <set>
+      <if test="cfgKey != null">
+        cfg_key = #{cfgKey,jdbcType=VARCHAR},
+      </if>
+      <if test="cfgValue != null">
+        cfg_value = #{cfgValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cfg_id = #{cfgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.server.bean.Config">
+    update tb_config
+    set cfg_key = #{cfgKey,jdbcType=VARCHAR},
+      cfg_value = #{cfgValue,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    where cfg_id = #{cfgId,jdbcType=INTEGER}
+  </update>
+</mapper>
